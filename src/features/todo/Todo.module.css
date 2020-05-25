@@ -1,0 +1,221 @@
+.todo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgb(255,255,227);
+    background: linear-gradient(135deg, rgba(255,255,227,1) 0%, rgba(216,237,224,1) 50%, rgba(246,221,214,1) 100%);
+    min-height: 100vh;
+}
+
+.todo__item button:focus {
+  outline: none
+}
+
+.todo__list {
+    display: grid;
+    grid-template-columns: 300px;
+    padding: 10px;
+    justify-content: center;
+    width: 100%;
+    grid-gap: 10px;  
+}
+
+.todo__form {
+  display: flex;
+  width: 300px;
+  margin-top: 50px;
+  justify-content: space-between;
+  height: 30px;
+}
+
+.todo__form button {
+  background-color: ghostwhite;
+  border: 1px solid #aaa;
+  width: 70px;
+  border-radius: 4px;
+}
+
+.todo__form input {
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  width: 220px;
+  padding-left: 10px;
+}
+
+.todo__button {
+  width: 20px;
+  height: 20px;
+  background-color: transparent;
+  border: none;
+  background-size: 100%;
+}
+
+@media (min-width: 630px) {
+  .todo__list {
+    grid-template-columns: 300px 300px;
+    padding: 10px;
+  }
+
+  .todo__form {
+    width: 400px;
+  }
+
+  .todo__form button {
+    width: 80px;
+  }
+
+  .todo__form input {
+    width: 300px;
+  }
+}
+
+@media (min-width: 950px) {
+  .todo__list {
+    grid-template-columns: 300px 300px 300px;
+    padding: 15px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .todo__list {
+    grid-template-columns: 300px 300px 300px 300px;
+    padding: 25px;
+  }
+}
+
+.todo__item {
+    margin: 15px;
+    width: 100%;
+    height: calc(100% - 30px);
+    background-color: transparent;
+    box-sizing: border-box;
+    padding: 7px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 4px;
+    color: #ffffff;
+}
+
+.todo__itemwrap {
+    background: rgb(138,133,228);
+    background: linear-gradient(135deg, rgba(138,133,228,1) 0%, rgba(41,195,183,1) 50%, rgba(105,172,109,1) 100%);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    border-radius: 7px;
+    box-shadow: 0 0 5px 2px rgba(0,0,0, 0.1);
+    width: 300px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+
+
+.todo__button_done {
+    background-image: url(../../image/icons/ok-circle.svg);
+}
+
+.todo__button_inprocess {
+    background-image: url(../../image/icons/alarm.svg);
+}
+
+.todo__button_failed {
+    background-image: url(../../image/icons/cancel.svg);
+}
+
+.todo__dropdown {
+  background-image: url(../../image/icons/ellypsis-vertical.svg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  background-color: transparent;
+  position: relative;
+  cursor: pointer;
+  box-sizing: content-box;
+}
+
+.todo__dropdown_hidden.active {
+  display: block;
+}
+
+.todo__dropdown_hidden {
+    position: absolute;
+    top: 21px;
+    right: 0;
+    background-color: #ffffff;
+    padding: 10px;
+    display: none;
+    border-radius: 4px;
+    width: 85px;
+    cursor: auto;
+}
+
+.todo__dropdown_hidden li {
+  color: #000000;
+  font-size: 14px;
+  cursor: pointer;
+  padding-left: 20px;
+  background-size: 20px;
+  background-repeat: no-repeat;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.todo__edit {
+  background-image: url(../../image/icons/edit.svg);
+}
+
+.todo__delete {
+  background-image: url(../../image/icons/close.svg);
+}
+
+.todo__date {
+  font-size: 10px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.todo__top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.todo__bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.done {
+  background: rgb(0,255,38);
+  background: linear-gradient(135deg, rgba(0,255,38,1) 0%, rgba(7,190,77,1) 50%, rgba(0,80,8,1) 100%);
+}
+
+.done button:nth-child(2), .done button:nth-child(3){
+  opacity: 0.3;
+}
+
+.inprogress button:nth-child(1), .inprogress button:nth-child(3){
+  opacity: 0.3;
+}
+
+.failed button:nth-child(1), .failed button:nth-child(2){
+  opacity: 0.3;
+}
+
+.inprogress {
+  background: rgb(220,221,1);
+  background: linear-gradient(135deg, rgba(220,221,1,1) 0%, rgba(176,180,4,1) 50%, rgba(134,135,5,1) 100%);
+}
+
+.failed {
+  background: rgb(221,34,1);
+  background: linear-gradient(135deg, rgba(221,34,1,1) 0%, rgba(176,14,8,1) 50%, rgba(87,0,12,1) 100%);
+}
