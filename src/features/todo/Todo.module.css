@@ -50,69 +50,22 @@
   background-size: 100%;
 }
 
-@media (min-width: 630px) {
-  .todo__list {
-    grid-template-columns: 300px 300px;
-    padding: 10px;
-  }
-
-  .todo__form {
-    width: 400px;
-  }
-
-  .todo__form button {
-    width: 80px;
-  }
-
-  .todo__form input {
-    width: 300px;
-  }
-}
-
-@media (min-width: 950px) {
-  .todo__list {
-    grid-template-columns: 300px 300px 300px;
-    padding: 15px;
-  }
-}
-
-@media (min-width: 1280px) {
-  .todo__list {
-    grid-template-columns: 300px 300px 300px 300px;
-    padding: 25px;
-  }
-}
-
 .todo__item {
-    margin: 15px;
-    width: 100%;
-    height: calc(100% - 30px);
-    background-color: transparent;
-    box-sizing: border-box;
-    padding: 7px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    border-radius: 4px;
-    color: #ffffff;
+  box-sizing: border-box;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #ffffff;
+  background: rgb(138,133,228);
+  background: linear-gradient(135deg, rgba(138,133,228,1) 0%, rgba(41,195,183,1) 50%, rgba(105,172,109,1) 100%);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  border-radius: 7px;
+  box-shadow: 0 0 5px 2px rgba(0,0,0, 0.1);
+  width: 300px;
+  height: 100px;
 }
-
-.todo__itemwrap {
-    background: rgb(138,133,228);
-    background: linear-gradient(135deg, rgba(138,133,228,1) 0%, rgba(41,195,183,1) 50%, rgba(105,172,109,1) 100%);
-    background-size: 100%;
-    background-repeat: no-repeat;
-    border-radius: 7px;
-    box-shadow: 0 0 5px 2px rgba(0,0,0, 0.1);
-    width: 300px;
-    height: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-sizing: border-box;
-}
-
-
 
 .todo__button_done {
     background-image: url(../../image/icons/ok-circle.svg);
@@ -153,6 +106,7 @@
     border-radius: 4px;
     width: 85px;
     cursor: auto;
+    z-index: 2;
 }
 
 .todo__dropdown_hidden li {
@@ -198,6 +152,16 @@
   background: linear-gradient(135deg, rgba(0,255,38,1) 0%, rgba(7,190,77,1) 50%, rgba(0,80,8,1) 100%);
 }
 
+.inprogress {
+  background: rgb(220,221,1);
+  background: linear-gradient(135deg, rgba(220,221,1,1) 0%, rgba(176,180,4,1) 50%, rgba(134,135,5,1) 100%);
+}
+
+.failed {
+  background: rgb(221,34,1);
+  background: linear-gradient(135deg, rgba(221,34,1,1) 0%, rgba(176,14,8,1) 50%, rgba(87,0,12,1) 100%);
+}
+
 .done button:nth-child(2), .done button:nth-child(3){
   opacity: 0.3;
 }
@@ -210,12 +174,35 @@
   opacity: 0.3;
 }
 
-.inprogress {
-  background: rgb(220,221,1);
-  background: linear-gradient(135deg, rgba(220,221,1,1) 0%, rgba(176,180,4,1) 50%, rgba(134,135,5,1) 100%);
+@media (min-width: 630px) {
+  .todo__list {
+    grid-template-columns: 300px 300px;
+    padding: 10px;
+  }
+
+  .todo__form {
+    width: 400px;
+  }
+
+  .todo__form button {
+    width: 80px;
+  }
+
+  .todo__form input {
+    width: 300px;
+  }
 }
 
-.failed {
-  background: rgb(221,34,1);
-  background: linear-gradient(135deg, rgba(221,34,1,1) 0%, rgba(176,14,8,1) 50%, rgba(87,0,12,1) 100%);
+@media (min-width: 950px) {
+  .todo__list {
+    grid-template-columns: 300px 300px 300px;
+    padding: 15px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .todo__list {
+    grid-template-columns: 300px 300px 300px 300px;
+    padding: 25px;
+  }
 }

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addTodo, deleteTodo, setStatusToDone, setStatusToInProgress, setStatusToFailed, selectTodo } from './todoSlice';
+import { addTodo, selectTodo } from './todoSlice';
 import TodoItem from './TodoItem';
 import styles from './Todo.module.css';
 
@@ -26,12 +26,9 @@ export function Todo() {
             {todo.map(element => <TodoItem 
                                     key={element.id} 
                                     id={element.id} 
+                                    date={element.date}
                                     todo={element.todo} 
                                     status={element.status}
-                                    setStatusToDone={() => dispatch(setStatusToDone(element.id))}
-                                    setStatusToInProgress={() => dispatch(setStatusToInProgress(element.id))}
-                                    setStatusToFailed={() => dispatch(setStatusToFailed(element.id))}
-                                    deleteTodo={() => dispatch(deleteTodo(element.id))}
             />)}
         </div>  
     </div>
