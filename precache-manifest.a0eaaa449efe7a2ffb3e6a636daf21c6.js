@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "039a8f368f32136b7e45320d413f1336",
+    "revision": "110d0e63f50cc70e005b51f07081e7ac",
     "url": "/todo-w-redux/index.html"
   },
   {
-    "revision": "e4f8326a436cfd39d3f6",
-    "url": "/todo-w-redux/static/css/main.7505a095.chunk.css"
+    "revision": "286ba3ab60350e490eeb",
+    "url": "/todo-w-redux/static/css/main.6716d2a9.chunk.css"
   },
   {
-    "revision": "82ac27a54ba85e762556",
-    "url": "/todo-w-redux/static/js/2.4f0f3aba.chunk.js"
+    "revision": "fee6b6151095ffc66b05",
+    "url": "/todo-w-redux/static/js/2.da6a7d3b.chunk.js"
   },
   {
     "revision": "c64c486544348f10a6d6c716950bc223",
-    "url": "/todo-w-redux/static/js/2.4f0f3aba.chunk.js.LICENSE.txt"
+    "url": "/todo-w-redux/static/js/2.da6a7d3b.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "e4f8326a436cfd39d3f6",
-    "url": "/todo-w-redux/static/js/main.c866ef85.chunk.js"
+    "revision": "286ba3ab60350e490eeb",
+    "url": "/todo-w-redux/static/js/main.374f86ce.chunk.js"
   },
   {
     "revision": "3ec8a14a246e85e7a5fb",
