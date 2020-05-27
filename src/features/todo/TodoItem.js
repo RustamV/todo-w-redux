@@ -8,10 +8,23 @@ export function TodoItem(props) {
     const [isTodoEditing, setIsTodoEditing] = useState(false);
     const [inputTodo, setInputTodo] = useState(props.todo);
     const [isMenuClicked, setIsMenuClicked] = useState(false);
+    const [todoError, setTodoError] = useState(false);
 
     function changeTodoState() {
-        dispatch(changeTodo({id: props.id, name: inputTodo}));
-        setIsTodoEditing(false);
+        if(inputTodo.length > 0 && inputTodo.length < 16) {
+            dispatch(changeTodo({id: props.id, name: inputTodo}));
+            setIsTodoEditing(false);
+        }
+    }
+
+    function handleInputChange(e) {
+        if(e.target.value.length > 15) {
+          setTodoError(true);
+        }
+        else {
+          setTodoError(false);
+        }
+        setInputTodo(e.target.value);
     }
     
     if(!isTodoEditing) {
@@ -40,12 +53,20 @@ export function TodoItem(props) {
     }
     else {
         return (
-            <div className={styles.todo__itemwrap}>
-                <div className={styles.todo__item}>
-                    <input value={inputTodo} onChange={(e => setInputTodo(e.target.value))}/>
-                    <button onClick={() => changeTodoState()}>Save</button>
-                    <button onClick={() => setIsTodoEditing(false)}>Cancel</button>
-                </div>
+            <div className={`${styles.todo__item} ${props.status === "done" ? styles.done : ""} ${props.status === "in progress" ? styles.inprogress : ""} ${props.status === "failed" ? styles.failed : ""}`}>
+                <form className={styles.todo__changeform}>
+                    <input 
+                        value={inputTodo} 
+                        onChange={(e => handleInputChange(e))}
+                        placeholder="Type a todo..."
+                        className={`${todoError ? styles.error : ""}`}
+                    />
+                    <div className={styles.todo__changebuttons}>
+                        <button onClick={() => changeTodoState()}>Save</button>
+                        <button onClick={() => setIsTodoEditing(false)}>Cancel</button>
+                    </div>
+                    <p className={`${styles.todo__changeform_error} ${todoError ? styles.active : ""}`}>Length of todo must be less than 15 symbols</p>
+                </form>
             </div>
             
         ); 

@@ -7,7 +7,7 @@
     min-height: 100vh;
 }
 
-.todo__item button:focus {
+.todo__top button:focus, .todo__bottom button:focus {
   outline: none
 }
 
@@ -26,6 +26,7 @@
   margin-top: 50px;
   justify-content: space-between;
   height: 30px;
+  position: relative;
 }
 
 .todo__form button {
@@ -40,6 +41,27 @@
   border-radius: 4px;
   width: 220px;
   padding-left: 10px;
+}
+
+.todo__form input:focus {
+  outline: none;
+}
+
+.todo__form input.error{
+  border: 1px solid red;
+}
+
+.todo__error {
+  position: absolute;
+  top: 33px;
+  font-size: 10px;
+  left: 13px;
+  color: red;
+  display: none;
+}
+
+.todo__error.active {
+  display: block;
 }
 
 .todo__button {
@@ -162,17 +184,72 @@
   background: linear-gradient(135deg, rgba(221,34,1,1) 0%, rgba(176,14,8,1) 50%, rgba(87,0,12,1) 100%);
 }
 
-.done button:nth-child(2), .done button:nth-child(3){
+.done .todo__bottom button:nth-child(2), .done .todo__bottom button:nth-child(3){
   opacity: 0.3;
 }
 
-.inprogress button:nth-child(1), .inprogress button:nth-child(3){
+.inprogress .todo__bottom button:nth-child(1), .inprogress .todo__bottom button:nth-child(3){
   opacity: 0.3;
 }
 
-.failed button:nth-child(1), .failed button:nth-child(2){
+.failed .todo__bottom button:nth-child(1), .failed .todo__bottom button:nth-child(2){
   opacity: 0.3;
 }
+
+.todo__changeform {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+  position: relative;
+}
+
+.todo__changeform input {
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  width: 100%;
+  padding-left: 10px;
+  height: 30px;
+}
+
+.todo__changeform input:focus {
+  outline: none;
+}
+
+.todo__changeform input.error{
+  border: 1px solid red;
+}
+
+.todo__changeform_error {
+  position: absolute;
+    top: -17px;
+    font-size: 10px;
+    left: 13px;
+    color: red;
+    background-color: white;
+    padding: 0px 9px;
+    display: none;
+    border-radius: 4px;
+}
+
+.todo__changeform_error.active {
+  display: block;
+}
+
+.todo__changebuttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.todo__changebuttons button {
+  width: 40%;
+  height: 22px;
+  background-color: ghostwhite;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+}
+
+
 
 @media (min-width: 630px) {
   .todo__list {
