@@ -1,0 +1,190 @@
+.todo-item {
+    box-sizing: border-box;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: #ffffff;
+    background: rgb(138,133,228);
+    background: linear-gradient(135deg, rgba(138,133,228,1) 0%, rgba(41,195,183,1) 50%, rgba(105,172,109,1) 100%);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    border-radius: 7px;
+    box-shadow: 0 0 5px 2px rgba(0,0,0, 0.1);
+    width: 300px;
+    height: 100px;
+
+    &--done {
+        background: rgb(0,255,38);
+        background: linear-gradient(135deg, rgba(0,255,38,1) 0%, rgba(7,190,77,1) 50%, rgba(0,80,8,1) 100%);
+    }
+
+    &--inprocess {
+        background: rgb(220,221,1);
+        background: linear-gradient(135deg, rgba(220,221,1,1) 0%, rgba(176,180,4,1) 50%, rgba(134,135,5,1) 100%);
+    }
+
+    &--failed {
+        background: rgb(221,34,1);
+        background: linear-gradient(135deg, rgba(221,34,1,1) 0%, rgba(176,14,8,1) 50%, rgba(87,0,12,1) 100%);
+    }
+}
+  
+.todo-item__dropdown {
+    background-image: url(../../image/icons/ellypsis-vertical.svg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    background-color: transparent;
+    position: relative;
+    cursor: pointer;
+    box-sizing: content-box;
+}
+  
+.todo-item__dropdown--hidden.active {
+    display: block;
+}
+  
+.todo-item__dropdown--hidden {
+    position: absolute;
+    top: 21px;
+    right: 0;
+    background-color: #ffffff;
+    padding: 10px;
+    display: none;
+    border-radius: 4px;
+    width: 85px;
+    cursor: auto;
+    z-index: 2;
+}
+  
+.todo-item__dropdown--hidden li {
+    color: #000000;
+    font-size: 14px;
+    cursor: pointer;
+    padding-left: 20px;
+    background-size: 20px;
+    background-repeat: no-repeat;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+  
+.todo-item__edit {
+    background-image: url(../../image/icons/edit.svg);
+}
+  
+.todo-item__delete {
+    background-image: url(../../image/icons/close.svg);
+}
+  
+.todo-item__date {
+    font-size: 10px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+  
+.todo-item__top {
+    display: flex;
+    justify-content: space-between;
+}
+
+.todo-item__top button:focus, .todo-item__bottom button:focus {
+    outline: none
+  }
+  
+.todo-item__bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+  
+.todo-item__changeform {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+    position: relative;
+}
+  
+.todo-item__changeform input {
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    width: 100%;
+    padding-left: 10px;
+    height: 30px;
+}
+  
+.todo-item__changeform input:focus {
+    outline: none;
+}
+  
+.todo-item__changeform input.error{
+    border: 1px solid red;
+}
+  
+.todo-item--error {
+    position: absolute;
+    top: -17px;
+    font-size: 10px;
+    left: 13px;
+    color: red;
+    background-color: white;
+    padding: 0px 9px;
+    display: none;
+    border-radius: 4px;
+}
+  
+.todo-item--error.active {
+    display: block;
+}
+  
+.todo-item__changebuttons {
+    display: flex;
+    justify-content: space-between;
+}
+  
+.todo-item__changebuttons button {
+    width: 40%;
+    height: 22px;
+    background-color: ghostwhite;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+}
+
+/* STATUS BUTTONS */
+
+.todo-item__button {
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+    border: none;
+    background-size: 100%;
+}
+
+.todo-item__button--done {
+    background-image: url(../../image/icons/ok-circle.svg);
+}
+  
+.todo-item__button--inprocess {
+    background-image: url(../../image/icons/alarm.svg);
+}
+  
+.todo-item__button--failed {
+      background-image: url(../../image/icons/cancel.svg);
+}
+  
+.todo-item--done .todo-item__bottom button:nth-child(2), .todo-item--done .todo-item__bottom button:nth-child(3){
+    opacity: 0.3;
+}
+  
+.todo-item--inprocess .todo-item__bottom button:nth-child(1), .todo-item--inprocess .todo-item__bottom button:nth-child(3){
+    opacity: 0.3;
+}
+  
+.todo-item--failed .todo-item__bottom button:nth-child(1), .todo-item--failed .todo-item__bottom button:nth-child(2){
+    opacity: 0.3;
+}
