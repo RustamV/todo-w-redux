@@ -1,24 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
 
+import "./index.css";
+import "./style/main.scss";
+import { App } from "./components";
 
-import { createStore } from 'redux'
-import { Provider } from 'react-redux'
-
-import rootReducer from './store/reducers'
-
-import './index.css';
-import './style/main.scss'
-import TodoApp from './components/todoApp/TodoApp';
-
-const store = createStore(rootReducer)
+import { store } from "./store";
+import { Provider } from "react-redux";
 
 ReactDOM.render(
-    <React.StrictMode>
-        <Provider store={store}>
-            <TodoApp />
-        </Provider>
-    </React.StrictMode>,
-    document.getElementById('root')
+    <Provider store={store}>
+        <App />
+    </Provider>,
+    document.getElementById("root")
 );
-
