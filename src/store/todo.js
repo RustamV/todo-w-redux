@@ -23,11 +23,11 @@ const formatDate = (date) => {
 };
 
 export const todoSlice = createSlice({
-    name: "counter",
+    name: "todo",
     initialState,
     reducers: {
         addTodo: (state, { payload }) => {
-            const newTodo = { id: Date.now(), date: formatDate(new Date(Date.now())), todo: payload, status: "" };
+            const newTodo = { id: Date.now(), date: formatDate(new Date(Date.now())), name: payload, status: "" };
             state.todoList.push(newTodo);
         },
         deleteTodo: (state, { payload }) => {

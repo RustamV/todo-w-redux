@@ -1,89 +1,93 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useDispatch } from "react-redux";
-import { deleteTodo, editTodo, editStatus } from "../../store/todo";
+import { EditForm } from "..";
+import { deleteTodo, editStatus } from "../../store/todo";
+import classNames from "classnames";
+import styles from "./index.module.scss";
+
+const todoStatuses = ["done", "in progress", "failed"];
 
 const TodoItem = ({ todo }) => {
     const dispatch = useDispatch();
     const { name, date, id, status } = todo;
-    const [inputValue, setInputValue] = useState(name);
-    const [hasError, setHasError] = useState(false);
     const [isTodoEditing, setIsTodoEditing] = useState(false);
-    const [isMenuClicked, setIsMenuClicked] = useState(false);
 
-    const changeTodoState = () => {
-        if (inputValue.length > 0 && inputValue.length < 16) {
-            dispatch(editTodo({ id, name: inputValue }));
-            setIsTodoEditing(false);
-        } else {
-            setHasError(true);
-        }
+    const todoClassnames = useMemo(
+        () =>
+            classNames(styles.todoItem, {
+                [styles.done]: status === todoStatuses[0],
+                [styles.inProgress]: status === todoStatuses[1],
+                [styles.failed]: status === todoStatuses[2]
+            }),
+        [status]
+    );
+
+    const statusButtons = useMemo(() => {
+        const statusObjects = [
+            { id: 0, title: "Done", className: styles.done },
+            { id: 1, title: "In progress", className: styles.inProgress },
+            { id: 2, title: "Failed", className: styles.failed }
+        ];
+
+        const switchStatus = (statusId) => {
+            dispatch(editStatus({ id, status: statusId }));
+        };
+
+        return statusObjects.map((button) => {
+            return {
+                ...button,
+                className: classNames(styles.button, button.className, {
+                    [styles.active]: status === todoStatuses[button.id]
+                }),
+                onClick: () => switchStatus(button.id)
+            };
+        });
+    }, [dispatch, id, status]);
+
+    const openEditForm = () => {
+        setIsTodoEditing(true);
     };
 
-    const handleInputChange = ({ target: { value } }) => {
-        if (value.length > 15 || value.length === 0) {
-            setHasError(true);
-        } else {
-            setHasError(false);
-        }
-        setInputValue(value);
+    const closeEditForm = () => {
+        setIsTodoEditing(false);
     };
 
-    return isTodoEditing ? (
-        <div className={"todo-item"}>
-            <form className={"todo-item__changeform"}>
-                <input value={inputValue} onChange={handleInputChange} placeholder="Type a todo..." className={""} />
-                <div className={"todo-item__changebuttons"}>
-                    <button onClick={changeTodoState} disabled={hasError}>
-                        Save
-                    </button>
-                    <button onClick={() => setIsTodoEditing(false)}>Cancel</button>
-                </div>
-                <p className={`todo-item--error ${hasError ? "active" : ""}`}>
-                    Length of todo must be less than 15 symbols
-                </p>
-            </form>
-        </div>
-    ) : (
-        <div
-            className={`todo-item ${
-                status === "done"
-                    ? "todo-item--done"
-                    : status === "in progress"
-                    ? "todo-item--inprocess"
-                    : status === "failed"
-                    ? "todo-item--failed"
-                    : ""
-            }`}>
-            <div className={"todo-item__top"}>
-                <p>{name}</p>
-                <div className={"todo-item__dropdown"} onClick={() => setIsMenuClicked((prev) => !prev)}>
-                    <ul className={`todo-item__dropdown--hidden ${isMenuClicked ? "active" : ""}`}>
-                        <li className={"todo-item__edit"} onClick={() => setIsTodoEditing(true)}>
-                            edit
-                        </li>
-                        <li className={"todo-item__delete"} onClick={() => dispatch(deleteTodo(id))}>
-                            delete
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div className={"todo-item__bottom"}>
-                <p className={"todo-item__date"}>{date}</p>
-                <div className={"todo-item__progress"}>
-                    <button
-                        title={"done"}
-                        className={"todo-item__button todo-item__button--done"}
-                        onClick={() => dispatch(editStatus({ id, status: 0 }))}></button>
-                    <button
-                        title={"in progress"}
-                        className={"todo-item__button todo-item__button--inprocess"}
-                        onClick={() => dispatch(editStatus({ id, status: 1 }))}></button>
-                    <button
-                        title={"failed"}
-                        className={"todo-item__button todo-item__button--failed"}
-                        onClick={() => dispatch(editStatus({ id, status: 2 }))}></button>
-                </div>
-            </div>
+    const handleDeleteButton = () => {
+        dispatch(deleteTodo(id));
+    };
+
+    return (
+        <div className={todoClassnames}>
+            {isTodoEditing ? (
+                <EditForm id={id} name={name} closeEditForm={closeEditForm} />
+            ) : (
+                <>
+                    <div className={styles.top}>
+                        <p>{name}</p>
+                        <div className={styles.settings}>
+                            <button
+                                className={classNames(styles.button, styles.edit, styles.active)}
+                                onClick={openEditForm}></button>
+                            <button
+                                className={classNames(styles.button, styles.delete, styles.active)}
+                                onClick={handleDeleteButton}></button>
+                        </div>
+                    </div>
+                    <div className={styles.bottom}>
+                        <p className={styles.date}>{date}</p>
+                        <div className={styles.progress}>
+                            {statusButtons.map((button) => (
+                                <button
+                                    title={button.title}
+                                    onClick={button.onClick}
+                                    className={button.className}
+                                    key={button.id}
+                                />
+                            ))}
+                        </div>
+                    </div>
+                </>
+            )}
         </div>
     );
 };

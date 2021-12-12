@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { addTodo } from "../../store/todo";
 import { selectTodoList } from "../../store/selectors";
 import { TodoItem } from "..";
+import styles from "./index.module.scss";
+import classNames from "classnames";
 
 const App = () => {
     const dispatch = useDispatch();
@@ -11,34 +13,39 @@ const App = () => {
     const [hasError, setHasError] = useState(false);
 
     const handleAddClick = () => {
-        if (!hasError) dispatch(addTodo(inputValue));
+        if (!hasError) {
+            dispatch(addTodo(inputValue));
+            setInputValue("");
+        }
     };
 
     const handleInputChange = ({ target: { value } }) => {
-        if (value.length === 0) setHasError(true);
-        else {
-            setHasError(false);
-        }
+        setHasError(value.length === 0 ? true : false);
         setInputValue(value);
     };
 
     return (
-        <div className="todo">
-            <div className="todo-form">
+        <div className={styles.todo}>
+            <div className={styles.form}>
                 <input
                     value={inputValue}
                     onChange={handleInputChange}
                     placeholder="Type a todo..."
-                    className="todo-form input"
+                    className={classNames(styles.input, {
+                        [styles.hasError]: hasError
+                    })}
                 />
-                <button onClick={handleAddClick} className="todo-form__button">
+                <button onClick={handleAddClick} className={styles.button}>
                     Add Todo
                 </button>
-                <p className={`todo-form__error ${hasError ? "active" : ""}`}>
+                <p
+                    className={classNames(styles.error, {
+                        [styles.active]: hasError
+                    })}>
                     Length of todo must be less than 15 symbols
                 </p>
             </div>
-            <div className="todo-list">
+            <div className={styles.list}>
                 {todoList.map((todo) => {
                     return <TodoItem key={todo.id} todo={todo} />;
                 })}
